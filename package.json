@@ -1,17 +1,19 @@
 {
-  "main":"main.js",
-  "author":"alain m",
+  "main": "main.js",
+  "author": "alain m",
   "description": "pour kouer au poker",
   "name": "poker420",
   "version": "0.0.0",
   "scripts": {
-    "electron":"electron .",
-    "electron-build":"ng build && electron .",
+    "electron": "electron .",
+    "electron-build": "ng build && electron .",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "electron-forge start",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
     "bootstrap": "^5.3.3",
+    "electron-squirrel-startup": "^1.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
@@ -32,6 +35,14 @@
     "@angular-devkit/build-angular": "^18.2.0",
     "@angular/cli": "^18.2.0",
     "@angular/compiler-cli": "^18.2.0",
+    "@electron-forge/cli": "^7.4.0",
+    "@electron-forge/maker-deb": "^7.4.0",
+    "@electron-forge/maker-rpm": "^7.4.0",
+    "@electron-forge/maker-squirrel": "^7.4.0",
+    "@electron-forge/maker-zip": "^7.4.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
+    "@electron-forge/plugin-fuses": "^7.4.0",
+    "@electron/fuses": "^1.8.0",
     "@types/jasmine": "~5.1.0",
     "electron": "^31.4.0",
     "jasmine-core": "~5.2.0",
