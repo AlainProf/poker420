@@ -1,1 +1,15 @@
-<h1>Poker 420</h1>
+<div class="container">
+   <section id="entete" class="row border border-info border-5">
+      <h1>Poker 420</h1>
+   </section>
+   
+
+
+   <app-connexion
+      (ouvrirCreationCompte)="cc.onOuvrirCreationCompte()">
+   </app-connexion>
+
+   <app-creation-compte #cc>
+
+   </app-creation-compte>
+</div>

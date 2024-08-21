@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { CreationCompteComponent } from './creation-compte/creation-compte.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ConnexionComponent, CreationCompteComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
