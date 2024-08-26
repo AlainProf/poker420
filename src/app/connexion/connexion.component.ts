@@ -20,4 +20,9 @@ export class ConnexionComponent {
     //alert("Click sur créer compte");
     this.ouvrirCreationCompte.emit();
   }
+
+  onQuitterCreationCompte()
+  {
+    this.visible=true;
+  }
 }

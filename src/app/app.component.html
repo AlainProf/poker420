@@ -5,11 +5,12 @@
    
 
 
-   <app-connexion
+   <app-connexion #conn
       (ouvrirCreationCompte)="cc.onOuvrirCreationCompte()">
    </app-connexion>
 
-   <app-creation-compte #cc>
-
+   <app-creation-compte #cc
+      (quitterCreationCompte)="conn.onQuitterCreationCompte()">
+      
    </app-creation-compte>
 </div>
