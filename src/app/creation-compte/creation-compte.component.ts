@@ -13,35 +13,49 @@ import { PokerService } from '../poker.service';
   styleUrl: './creation-compte.component.css'
 })
 export class CreationCompteComponent {
-  visible=false;
-  membreCandidat:Membre = new Membre();
+  visible = false;
+  membreCandidat: Membre = new Membre();
+  confirmation = "";
 
   @Output() quitterCreationCompte = new EventEmitter<any>();
 
-  constructor(private poksrv:PokerService){}
+  constructor(private poksrv: PokerService) { }
 
-  valider()
+  valider() 
   {
-    //alert("nom désiré:" + this.membreCandidat.nom);
+    let valide = false;
+    if (this.membreCandidat.nom.length > 1) {
+      if (this.membreCandidat.courriel.length > 5) {
+        if (this.membreCandidat.motDePasse.length > 1) {
+          if (this.membreCandidat.motDePasse == this.confirmation) {
+            valide = true;
+            this.poksrv.creationMembre(this.membreCandidat).subscribe(
+              id  => {
+                this.membreCandidat.id = id;
+                alert("Le membre " + this.membreCandidat.nom + " a été créé avec l'id " + this.membreCandidat.id);
+              })
+          }
+        }
+      }
+    }
 
-    this.poksrv.creationMembre(this.membreCandidat).subscribe(
-       msg => {
-        alert("id du nouveau membre :" + msg);
-       } 
-    )
+    if (!valide)
+      alert("Une erreur est survenue");
   }
 
 
-  quitter()
-  {
-    this.visible = false;
-    this.quitterCreationCompte.emit();
 
-  }
 
-  onOuvrirCreationCompte()
-  {
-    //alert("ouverture de CC");
-    this.visible=true;
-  }
+quitter()
+{
+  this.visible = false;
+  this.quitterCreationCompte.emit();
+
+}
+
+onOuvrirCreationCompte()
+{
+  //alert("ouverture de CC");
+  this.visible = true;
+}
 }

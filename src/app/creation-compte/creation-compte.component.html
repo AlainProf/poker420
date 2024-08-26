@@ -12,7 +12,7 @@
     <input type='password' id="motDePasse" [(ngModel)] = "membreCandidat.motDePasse"><br>
 
     <label>Confirmer Mot de passe:</label>
-    <input type='password' id="confirmation"><br>
+    <input type='password' id="confirmation" [(ngModel)]="confirmation"><br>
 
     <button class="btn btn-info" (click)="valider()">Valider</button><hr>
     <button class="btn btn-warning" (click)="quitter()">Annuler</button>
