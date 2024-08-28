@@ -1,0 +1,1 @@
+export const urlServeur="https://localhost:8000";

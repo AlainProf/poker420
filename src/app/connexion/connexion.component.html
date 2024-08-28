@@ -2,9 +2,10 @@
 
 <h1>Connectez vous!</h1>
 <label>Membre:</label>
-<input><br>
+<input [(ngModel)]="membre.nom"><br>
 <label>Mot de passe:</label>
-<input><br>
-<button class="btn btn-info">Se connecter</button><hr>
+<input [(ngModel)]="membre.motDePasse"><br>
+
+<button class="btn btn-info" (click)="validerConnexion()">Se connecter</button><hr>
 <button class="btn btn-warning" (click)="OuvrirCreationCompte()">Créer un compte</button>
 </div>

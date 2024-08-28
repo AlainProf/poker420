@@ -6,11 +6,15 @@
 
 
    <app-connexion #conn
-      (ouvrirCreationCompte)="cc.onOuvrirCreationCompte()">
+      (ouvrirCreationCompte)="cc.onOuvrirCreationCompte()"
+            (connexionReussie)="acc.ouvrirAccueil($event)">
    </app-connexion>
 
    <app-creation-compte #cc
       (quitterCreationCompte)="conn.onQuitterCreationCompte()">
-      
    </app-creation-compte>
+
+   <app-accueil #acc>
+
+   </app-accueil>
 </div>
