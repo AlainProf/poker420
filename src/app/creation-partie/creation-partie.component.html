@@ -1,0 +1,13 @@
+<section *ngIf="visible">
+<h3>Création de partie</h3> 
+<h4>Choisissez vos adversaires</h4>
+   <div class="row">
+      <section class="col-1" *ngFor="let m of tabMembres">
+         {{m.nom}}
+         <input type="checkbox" (click)="basculeMembre(m.id)">
+      </section>
+   </div>
+
+   <button (click)="accepterMembres()">Accepter ces membres</button>
+   <button (click)="quitter()">Quitter</button>
+</section>

@@ -1,7 +1,11 @@
 export class Membre
 {
-    id:Number=0;
+    id:number=0;
     nom="";
-    motDePasse:string="";
+    mot_de_passe:string="";
     courriel="";
+}
+
+export class MembreCandidat extends Membre{
+    choisi=false;
 }

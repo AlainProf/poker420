@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Membre } from '../modele/membre';
+import { tr } from '../util';
+
 
 
 @Component({
@@ -12,11 +14,23 @@ import { Membre } from '../modele/membre';
 })
 export class AccueilComponent {
   visible=false;
+  membre:Membre = new Membre();
+  @Output() ouvrirEcranCP = new EventEmitter<Membre>();
 
   ouvrirAccueil(mem:Membre )
   {
-    alert(mem.nom);
+    this.membre = mem
+    tr(this.membre.nom);
     this.visible=true;
+  }
+
+
+  ouvrirEcranCreationPartie()
+  {
+    tr("Ouvrir c p");
+    this.visible=false;
+    this.ouvrirEcranCP.emit(this.membre);
+
   }
 
   quitter()

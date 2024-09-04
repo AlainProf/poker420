@@ -26,8 +26,8 @@ export class CreationCompteComponent {
     let valide = false;
     if (this.membreCandidat.nom.length > 1) {
       if (this.membreCandidat.courriel.length > 5) {
-        if (this.membreCandidat.motDePasse.length > 1) {
-          if (this.membreCandidat.motDePasse == this.confirmation) {
+        if (this.membreCandidat.mot_de_passe.length > 1) {
+          if (this.membreCandidat.mot_de_passe == this.confirmation) {
             valide = true;
             this.poksrv.creationMembre(this.membreCandidat).subscribe(
               id  => {

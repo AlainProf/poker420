@@ -1,8 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PokerService } from '../poker.service';
 import { Membre } from '../modele/membre';
+import { tr } from '../util';
 
 
 @Component({
@@ -16,63 +17,64 @@ export class ConnexionComponent {
   @Output() ouvrirCreationCompte = new EventEmitter<any>();
   @Output() connexionReussie = new EventEmitter<Membre>();
 
-  membre:Membre=new Membre();
+  membre: Membre = new Membre();
 
-  visible:boolean = true;
+  visible: boolean = true;
 
-  constructor(private poksrv:PokerService)
-  {}
+  constructor(private poksrv: PokerService) { }
 
-  OuvrirCreationCompte()
-  {
+  OuvrirCreationCompte() {
     this.visible = false;
     //alert("Click sur créer compte");
     this.ouvrirCreationCompte.emit();
   }
 
-  onQuitterCreationCompte()
-  {
-    this.visible=true;
+  onQuitterCreationCompte() {
+    this.visible = true;
   }
 
-  validerConnexion()
-  {
-    let ok=false;
+  validerConnexion() {
+
+    this.triche();
+    let ok = false;
     //alert("Nom:" + this.membre.nom);
 
-    if (this.membre.nom.length > 1)
-    {
-      if (this.membre.motDePasse.length > 1)
-      {
+    if (this.membre.nom.length > 1) {
+      if (this.membre.mot_de_passe.length > 1) {
         this.poksrv.connexion(this.membre).subscribe(
-        
-          mem => {
-
-            this.membre= mem;
-            alert("Courriel connecté:" + this.membre.courriel);
-
-
-            ok = true;
-
-
-
-            this.connexionReussie.emit(this.membre);
-
-/*          if (mem == "-1")
-           {
-                alert("Connexion réussie");
-                alert(mem);
-            }
-            else
-            {
-              alert("Echec de la Connexion");
-            }*/
-
-
-
+          {
+            next:
+              mem => {
+                tr("Communication avec serveur OK!");
+                if (mem.courriel == undefined)
+                {
+                   alert("mauvais logon");
+                }
+                else
+                {
+                  tr("Membre bien connecté:" + this.membre.nom);
+                  this.membre = mem; 
+                  this.visible = false;
+                 
+                  this.connexionReussie.emit(this.membre);
+                }
+              },
+            error:
+              err => {
+                alert("Erreur HHTP, vérifiez le serveur");
+              }
           }
-      );
+        );
       }
+    }
+  }
+
+  triche()
+  {
+    if (this.membre.nom.length == 0)
+    {
+      this.membre.nom="Allen";
+      this.membre.mot_de_passe = "11";
     }
   }
 }

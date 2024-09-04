@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Membre } from './modele/membre';
+import { Membre, MembreCandidat } from './modele/membre';
 import { urlServeur } from '../app/util';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class PokerService {
         fromObject :
         {
           nom:membre.nom,
-          motDePasse:membre.motDePasse,
+          mot_de_passe:membre.mot_de_passe,
           courriel:membre.courriel
         }
     } );
@@ -33,18 +33,35 @@ export class PokerService {
     let url = urlServeur + "/connexion";
 
     console.log(membre.nom);
-    console.log(membre.motDePasse);
+    console.log(membre.mot_de_passe);
     const params = new HttpParams
     ( 
       {
         fromObject :
         {
           nom:membre.nom,
-          motDePasse:membre.motDePasse
+          mot_de_passe:membre.mot_de_passe
         }
     } );
 
     return this.http.post<Membre>(url, params);
+
+  }
+
+  getTousLesMembres()
+  {
+    let url = urlServeur + "/getTousLesMembres";
+
+    const params = new HttpParams
+    ( 
+      {
+        fromObject :
+        {
+        }
+    } );
+   
+    return this.http.post<MembreCandidat[]>(url, params);
+
 
   }
 

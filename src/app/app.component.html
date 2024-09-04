@@ -14,7 +14,15 @@
       (quitterCreationCompte)="conn.onQuitterCreationCompte()">
    </app-creation-compte>
 
-   <app-accueil #acc>
-
+   <app-accueil #acc
+       (ouvrirEcranCP) = cp.onOuvrirEcranCP($event)>
    </app-accueil>
+
+   <app-creation-partie #cp
+         (demarrerPartie) = tj.onDemarrerPartie($event) >
+   </app-creation-partie>
+
+   <app-table-de-jeu #tj>
+
+   </app-table-de-jeu>
 </div>

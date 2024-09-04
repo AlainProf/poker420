@@ -1,6 +1,11 @@
 <div *ngIf="visible">
 
-    <h1>Bienvenue </h1>
+    <h1>Bienvenue {{membre.nom}}</h1>
+    
+    <button class="btn btn-danger" (click)="ouvrirEcranCreationPartie()">Créer une partie</button>
+    
+    
+    
     <button class="btn btn-warning" (click)="quitter()">Annuler</button>
     
     </div>
