@@ -1,11 +1,12 @@
 <div *ngIf="visible">
 
     <h1>Bienvenue {{membre.nom}}</h1>
+  <section>
+    <button *ngFor="let p of tabIdsParties" class="btn btn-info">{{p}}</button>
+  </section>
     
+
     <button class="btn btn-danger" (click)="ouvrirEcranCreationPartie()">Créer une partie</button>
-    
-    
-    
     <button class="btn btn-warning" (click)="quitter()">Annuler</button>
     
     </div>

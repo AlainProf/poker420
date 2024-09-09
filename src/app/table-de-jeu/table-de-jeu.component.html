@@ -1,8 +1,11 @@
 
 <div *ngIf="visible">
 
-    <h1>Partie 76</h1>
+    <h1>Partie {{infoPartie.id}}</h1>
     
+    <p *ngFor="let j of infoPartie.joueurs">{{j.nom}}</p>
+
+
    
     <button class="btn btn-warning" (click)="quitter()">Annuler</button>
     

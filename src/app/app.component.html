@@ -22,7 +22,7 @@
          (demarrerPartie) = tj.onDemarrerPartie($event) >
    </app-creation-partie>
 
-   <app-table-de-jeu #tj>
-
+   <app-table-de-jeu #tj
+        (quitterTJ) = "acc.ouvrirAccueil($event)">
    </app-table-de-jeu>
 </div>

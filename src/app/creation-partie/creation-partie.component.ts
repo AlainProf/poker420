@@ -13,8 +13,10 @@ import { PokerService } from '../poker.service';
 })
 export class CreationPartieComponent {
   visible = false;
+  membreConnecte = new Membre();
   tabMembres:MembreCandidat[] = new Array();
-  @Output() demarrerPartie: EventEmitter<number[]> = new EventEmitter<number[]>();
+
+  @Output() demarrerPartie = new EventEmitter<{arg1:number[], arg2:Membre}>();
 
 
   constructor(private pksrv:PokerService)
@@ -23,6 +25,7 @@ export class CreationPartieComponent {
   onOuvrirEcranCP(mem:Membre)
   {
     this.visible=true;
+    this.membreConnecte = mem;
     this.pksrv.getTousLesMembres().subscribe(
       { 
         next:
@@ -54,7 +57,7 @@ export class CreationPartieComponent {
     {
       if (this.tabMembres[i].id === id)
       {
-        this.tabMembres
+        this.tabMembres[i].choisi = !this.tabMembres[i].choisi;
       }
     }
 
@@ -62,34 +65,40 @@ export class CreationPartieComponent {
 
   accepterMembres()
   {
-    let tabMembresSelectionnes:number[] = Array();
+    let tabMembresSelectionnes:number[] = [0,0,0,0,0,0,0,0,0,0];
+    let nbMembres = 0;
     let onYVa= true;
-    
-
-    for(let i=0; this.tabMembres.length; i++)
+   
+    for(let i=0; i<this.tabMembres.length; i++)
     {
       if (this.tabMembres[i].choisi)
       {
+        if (nbMembres == 10)
+        {
+            nbMembres++;
+            break;
+        }
         tabMembresSelectionnes.push(this.tabMembres[i].id);
+        nbMembres++;
       }
     }
 
-    if (tabMembresSelectionnes.length > 10)
+    if (nbMembres > 10)
     {
       tr("Erreur 10 membres maximum");
       onYVa = false;
     }
-    if (tabMembresSelectionnes.length <1 )
-      {
-        tr("Erreur 1 membres minimum");
-        onYVa = false;
-      }
+    if (nbMembres < 2 )
+    {
+       tr("Erreur 2 membres minimum");
+       onYVa = false;
+    }
 
-      if (onYVa)
-      {
-        this.visible=false;
-        this.demarrerPartie.emit(tabMembresSelectionnes);
-      }
+    if (onYVa)
+    {
+       this.visible=false;
+       this.demarrerPartie.emit({arg1:tabMembresSelectionnes, arg2:this.membreConnecte});
+    }
 
   }
 
