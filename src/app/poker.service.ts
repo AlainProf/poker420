@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Membre, MembreCandidat } from './modele/membre';
-import { urlServeur } from '../app/util';
+import { tr, urlServeur } from '../app/util';
 import { InfoPartie } from './modele/InfoPartie';
 
 @Injectable({
@@ -91,7 +91,7 @@ export class PokerService {
     return this.http.post<InfoPartie>(url, params);
   }
 
-  getPartiesDUnMembre(id:number)
+  getPartiesDUnMembre(m: Membre)
   {
     let url = urlServeur + "/getPartiesDUnMembre";
 
@@ -100,12 +100,38 @@ export class PokerService {
       {
         fromObject :
         {
-          idj : id 
+          idj : m.id,
+          jwt : m.jwt
         }
     } );
    
     return this.http.post<number[]>(url, params); 
   }
+
+  getInfoPartie(idP:number)
+  {
+    let url = urlServeur + "/getInfoPartie";
+
+    const params = new HttpParams
+    ( 
+      {
+        fromObject :
+        {
+          idP : idP 
+        }
+    } );
+   
+    tr("getIngoPartie");
+    return this.http.post<InfoPartie>(url, params); 
+  }
+
+    //--------------------------------
+  //
+  //--------------------------------
+  televerseFichier(info:FormData)
+  {
+    return this.http.post<string>(urlServeur + '/televerseAvatar', info);
+  }  
 
 
 }

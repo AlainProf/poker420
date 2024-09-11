@@ -78,7 +78,7 @@ export class CreationPartieComponent {
             nbMembres++;
             break;
         }
-        tabMembresSelectionnes.push(this.tabMembres[i].id);
+        tabMembresSelectionnes[nbMembres] = this.tabMembres[i].id;
         nbMembres++;
       }
     }

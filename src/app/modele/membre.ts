@@ -4,6 +4,7 @@ export class Membre
     nom="";
     mot_de_passe:string="";
     courriel="";
+    jwt="";
 }
 
 export class MembreCandidat extends Membre{

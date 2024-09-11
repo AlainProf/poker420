@@ -54,9 +54,11 @@ export class ConnexionComponent {
                 {
                   tr("Membre bien connecté:" + this.membre.nom);
                   this.membre = mem; 
+                  tr("jwt de " + mem.nom + ":" + mem.jwt);
                   this.visible = false;
                  
                   this.connexionReussie.emit(this.membre);
+                  
                 }
               },
             error:
@@ -73,7 +75,7 @@ export class ConnexionComponent {
   {
     if (this.membre.nom.length == 0)
     {
-      this.membre.nom="Allen";
+      this.membre.nom="ben";
       this.membre.mot_de_passe = "11";
     }
   }

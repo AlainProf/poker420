@@ -55,4 +55,26 @@ export class TableDeJeuComponent {
     this.quitterTJ.emit(this.membreConnecte);
   }
 
+  onOuvrirPartie(eventData: {arg1:number, arg2:Membre})
+  {
+    this.visible= true;
+    this.membreConnecte = eventData.arg2;
+
+    this.pokSrv.getInfoPartie(eventData.arg1).subscribe(
+      {
+        next:
+          infoP =>
+            {
+              tr("Detail partie " + infoP.id)
+              this.infoPartie = infoP;
+            },
+        error:
+          err =>
+          {
+            tr("Erreur HTTP 73");
+          }
+      }
+    );
+  }
+
 }
